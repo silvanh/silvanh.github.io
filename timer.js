@@ -8,7 +8,7 @@ let timeUntilReduction = 0;
 let state = "initial"; // States: "initial", "running", "stopped"
 
 // Load the whistle sound
-const whistle = new Audio('whistle.wav');
+const whistle = new Audio('whistle1.wav');
 
 function startStopResetTimer() {
     const button = document.getElementById('startStopButton');
