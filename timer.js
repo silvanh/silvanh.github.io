@@ -60,8 +60,14 @@ function initializeTimer() {
 function runTimer() {
     if (!currentInterval) return; // Prevent running with invalid input
 
+    // Stop the current whistle if playing and reset it
+    whistle.pause();
+    whistle.currentTime = 0;
+
     // Play whistle and display the current interval
-    whistle.play();
+    whistle.play().catch((err) => {
+        console.error("Audio playback error:", err);
+    });
     document.getElementById('currentInterval').innerText = currentInterval.toFixed(2);
 
     // Set a timeout for the current interval
@@ -99,6 +105,10 @@ function resetTimer() {
     // Reset the display
     document.getElementById('currentInterval').innerText = "-";
     document.getElementById('totalRunTime').innerText = "-";
+
+    // Ensure no lingering audio
+    whistle.pause();
+    whistle.currentTime = 0;
 }
 
 // Utility function to format time
